@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <base href="/dataview/" />
+    <title>Team 4's Hack Week Data Viewer</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimal-ui" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="yes" />
+    <link rel="shortcut icon" href="/assets/img/favicon.png" type="image/x-icon" />
+    <link rel="stylesheet" href="/dist/css/mobile-angular-ui-hover.min.css" />
+    <link rel="stylesheet" href="/dist/css/mobile-angular-ui-base.min.css" />
+    <link rel="stylesheet" href="/dist/css/mobile-angular-ui-desktop.min.css" />
+    <link rel="stylesheet" href="dataview.css" />
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.min.js"></script>
+    <script src="/dist/js/mobile-angular-ui.min.js"></script>
+    <!-- Required to use $touch, $swipe, $drag and $translate services -->
+    <script src="/dist/js/mobile-angular-ui.gestures.min.js"></script>
+    <script src="dataview.js"></script>
+  </head>
+
+  <body
+    ng-app="MobileAngularUiExamples"
+    ng-controller="MainController"
+    ui-prevent-touchmove-defaults
+    >
+
+    <!-- Sidebars -->
+    <div ng-include="'sidebar.html'"
+            ui-track-as-search-param="true"
+            class="sidebar sidebar-left"></div>
+
+    <!-- div ng-include="'sidebarRight.html'"
+            class="sidebar sidebar-right"></div -->
+
+    <div class="app"
+         ui-swipe-right="Ui.turnOn('uiSidebarLeft')"
+         ui-swipe-left="Ui.turnOff('uiSidebarLeft')">
+
+      <!-- Navbars -->
+
+      <div class="navbar navbar-app navbar-absolute-top">
+        <div class="navbar-brand navbar-brand-center" ui-yield-to="title">
+          Team 4 Hack Week demo
+        </div>
+        <div class="btn-group pull-left">
+          <div ui-toggle="uiSidebarLeft" class="btn sidebar-toggle">
+            <i class="fa fa-bars"></i> Menu
+          </div>
+        </div>
+        <!-- div class="btn-group pull-right" ui-yield-to="navbarAction">
+          <div ui-toggle="uiSidebarRight" class="btn sidebar-right-toggle">
+            <i class="fa fa-comment"></i> Chat
+          </div>
+        </div -->
+      </div>
+
+      <div class="navbar navbar-app navbar-absolute-bottom">
+        <div class="btn-group justified">
+          <a href="https://paper.dropbox.com/doc/Top-Places-to-Quickly-Get-Your-Data-dkhTK7pzat8aC3JWpjT9a" target="_blank" class="btn btn-navbar"><i class="fa fa-question fa-navbar"></i> How to get your data</a>
+          <a href="https://miro.com/app/board/o9J_ku1qF04=/"  target="_blank" class="btn btn-navbar"><i class="fa fa-edit fa-navbar"></i> Main Miro</a>
+          <a href="https://miro.com/app/board/o9J_knmDJig=/"  target="_blank" class="btn btn-navbar"><i class="fa fa-edit fa-navbar"></i> Our Miro</a>
+          <a href="https://bit.ly/2PK1IpJ" target="_blank" class="btn btn-navbar"><i class="fa fa-paint-brush fa-navbar"></i> Visual Prototype</a>
+          <a href="https://docs.google.com/spreadsheets/d/12VIFWu_jzPg1syOSsSp-Syc1sj37Zy-rA1nlep5Ubgo/edit?usp=drive_web&ouid=104276911259518126555" class="btn btn-navbar"><i class="fa fa-cloud-download fa-navbar"></i> GDPR help</a>
+        </div>
+      </div>
+
+      <!-- App Body -->
+      <div class="app-body" ng-class="{loading: loading}">
+        <div ng-show="loading" class="app-content-loading">
+          <i class="fa fa-spinner fa-spin loading-spinner"></i>
+        </div>
+        <div class="app-content">
+          <ng-view></ng-view>
+        </div>
+      </div>
+
+    </div><!-- ~ .app -->
+
+    <div ui-yield-to="modals"></div>
+  </body>
+</html>

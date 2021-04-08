@@ -1,0 +1,135 @@
+<div ui-content-for="title">
+  <span>1. Import your data</span>
+</div>
+
+
+<div class="scrollable">
+  <div class="scrollable-content">
+    <div class="section">
+      <div class="list-group-item list-group-item-home text-center">
+        <div>
+          <i class="fa fa-upload feature-icon  text-primary"></i>
+        </div>
+        <div>
+          <h3 class="home-heading">Import your data</h3>
+          <p>In order to use your personal data store you'll need to fill it with your data. <br/> On this page we'll guide you through how to import the files you have downloaded from Facebook, Google and elsewhere so that we can help you get your hands on your juicy data!</p>
+          <p><span style="color:forestgreen;"><i class="fa fa-asterisk"></i>&nbsp;<strong>It's safe.</strong></span>&nbsp;The data that you import will ONLY be stored in your web browser, never uploaded to the web or seen by the BBC. <br/>You can delete it again whenever you like by clearing your browser or using our delete buttons.</p>
+        </div>
+      </div>
+      <div class="panel-group"
+
+           ui-shared-state="myAccordion">
+
+        <div class="panel panel-default">
+          <div class="panel-heading" ui-set="{'myAccordion': 1}">
+
+            <h4 class="panel-title">
+              <i class="fa fa-facebook text-primary"></i>&nbsp;Facebook
+              <span id="facebookNotLoaded" style="float:right;"><i class="fa fa-circle-o text-primary" style="color:darkorange;"></i>&nbsp;Ready for data.</span>
+              <span id="facebookLoaded" style="display:none;float:right;"><i class="fa fa-check-circle-o text-primary" style="color:forestgreen;"></i>&nbsp;{{facebookMessageInboxList.length}} message threads found in Inbox.</span>
+            </h4>
+          </div>
+
+          <div ui-if="myAccordion == 1">
+            <div class="panel-body">
+              <p>The data we can currently load from Facebook is your <code>messages</code> directory which contains many JSON files. If you haven't already, you can download this from <a href="https://www.facebook.com/dyi" target="_blank">Facebook's Download Your Information tool</a>. You can click the "How to get your data" link at the bottom of this page for detailed instructions. Make sure you download in JSON not HTML format.</p>
+            <h4>Where is your Facebook data?</h4>
+              <p>Please unzip your Facebook JSON download and browse to the directory containing your unzipped data. The folder to click 'Upload' on is the one which contains the <code>messages</code> <strong>folder</strong>, and it's probably called something like <code>facebook-yourname</code>.</p>
+              <form [formGroup]="facebook" role="form" ng-submit='facebookSubmit($event)'>
+                <fieldset>
+                  <!--Name: <input (ngModelChange)="testname=$event;"] [(ngModel)]="testname">-->
+                  <input id="facebookDirectoryInput" name="facebookDirectory" type="file" webkitdirectory mozdirectory msdirectory odirectory directory multiple="multiple" />
+                  <button id="loadFacebookData" class="btn btn-primary">Check folder</button>
+                  <button id="deleteFacebookData" class="btn btn-secondary" style="display:none;">Forget this directory</button>
+                </fieldset>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel panel-default">
+          <div class="panel-heading" ui-set="{'myAccordion': 2}">
+
+            <h4 class="panel-title">
+              <i class="fa fa-google text-primary"></i>&nbsp;Google
+            </h4>
+          </div>
+
+          <div ui-if="myAccordion == 2">
+            <div class="panel-body">
+              Google data details to be added here.
+            </div>
+          </div>
+        </div>
+
+        <div class="panel panel-default">
+          <div class="panel-heading" ui-set="{'myAccordion': 3}">
+
+            <h4 class="panel-title">
+              <i class="fa fa-bank text-primary"></i>&nbsp;NatWest Bank
+              <span id="natwestNotLoaded" class="pull-right"><i class="fa fa-circle-o text-primary" style="color:darkorange;"></i>&nbsp;Ready for data.</span>
+              <span id="natwestLoaded" class="pull-right" style="display:none;"><i class="fa fa-check-circle-o text-primary" style="color:forestgreen;"></i>&nbsp;Transactions file loaded.</span>
+            </h4>
+          </div>
+
+          <div ui-if="myAccordion == 3">
+            <div class="panel-body">
+              <p>The data we can currently load from NatWest is your <code>transactions CSV</code> file. If you haven't already, you can download this from your Online Banking. You can click the "How to get your data" link at the bottom of this page for detailed instructions.</p>
+              <h4>Where is your NatWest data?</h4>
+              <p>Please browse to the CSV and click 'Upload'. The CSV is probably called something like <code>SMITHJONES53426433-20200807.csv</code> and has the columns 'Date', 'Type', 'Description', 'Value' and 'Balance'.</p>
+              <form [formGroup]="natwest" role="form" ng-submit='natwestSubmit($event)'>
+                <fieldset>
+                  <input id="natwestFileInput" name="natwestFile" type="file" webkitfiles mozfiles msfiles ofiles file files multiple="false"/>
+                  <button id="loadNatwestData" class="btn btn-primary">Check file</button>
+                  <button id="deleteNatwestData" class="btn btn-secondary" style="display:none;">Forget this file</button>
+                </fieldset>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel panel-default">
+          <div class="panel-heading" ui-set="{'myAccordion': 4}">
+
+            <h4 class="panel-title">
+              <i class="fa fa-tv text-primary"></i>&nbsp;Netflix
+              <span id="netflixNotLoaded" class="pull-right"><i class="fa fa-circle-o text-primary" style="color:darkorange;"></i>&nbsp;Ready for data.</span>
+              <span id="netflixLoaded" class="pull-right" style="display:none;"><i class="fa fa-check-circle-o text-primary" style="color:forestgreen;"></i>&nbsp;Viewing history file loaded.</span>
+
+            </h4>
+          </div>
+
+          <div ui-if="myAccordion == 4">
+            <div class="panel-body">
+              <p>The data we can currently load from Netflix is your <code>viewing history CSV</code> file. which contains many JSON files. If you haven't already, you can download this from your Online Banking. You can click the "How to get your data" link at the bottom of this page for detailed instructions.</p>
+              <h4>Where is your Netflix data?</h4>
+              <p>Please browse to the CSV and click 'Upload'. The CSV is probably called <code>NetflixViewingHistory.csv</code> and has the columns 'Title' and 'Date'.</p>
+              <form [formGroup]="netflix" role="form" ng-submit='netflixSubmit($event)'>
+                <fieldset>
+                  <input id="netflixFileInput" name="netflixFile" type="file" webkitfiles mozfiles msfiles ofiles file files multiple="false"/>
+                  <button id="loadNetflixData" class="btn btn-primary">Check file</button>
+                  <button id="deleteNetflixData" class="btn btn-secondary" style="display:none;">Forget this file</button>
+                </fieldset>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel panel-default">
+          <div class="panel-heading" ui-set="{'myAccordion': 5}">
+
+            <h4 class="panel-title">
+              <i class="fa fa-spotify text-primary"></i>&nbsp;Spotify
+            </h4>
+          </div>
+
+          <div ui-if="myAccordion == 5">
+            <div class="panel-body">
+              Spotify data details to be added here.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

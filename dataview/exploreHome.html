@@ -1,0 +1,17 @@
+<div ui-content-for="title">
+  <span>3b. Explore your data in the 'Home' area</span>
+</div>
+
+<div class="scrollable">
+  <div class="scrollable-content">
+    <div class="list-group">
+      <a ng-repeat="item in topics"  href="" class="list-group-item">
+        <i class="fa fa-television text-primary"></i>&nbsp;{{ item.lastViewed }} viewed {{ item.name }}
+      </a>
+      <a ng-repeat="item in transactionsFromNatWest"  href="" class="list-group-item">
+        <i class="fa fa-bank text-primary"></i>&nbsp;{{ item.date }}: £{{ item.amount }} {{item.type=="EXPENSE" ? 'spent with' : 'received from'}} {{ item.organisation }}
+      </a>
+    </div>
+  </div>
+
+</div>

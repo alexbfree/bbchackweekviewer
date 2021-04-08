@@ -1,0 +1,61 @@
+<div ui-content-for="title">
+  <span>2. Place your data</span>
+</div>
+
+<div>
+  <div class="section">
+    <div class="list-group-item list-group-item-home text-center">
+      <div>
+        <i class="fa fa-tencent-weibo feature-icon  text-primary"></i>
+      </div>
+      <div>
+        <h3 class="home-heading">Place your data</h3>
+        <p>Now we're ready to analyse your loaded data files and show you some things that are in your data. <br/>Pick out the entities that are meaningful to you and assign them to the area you would like to associate them with.<br/>Any entities you leave unplaced will be ignored for now - don't worry you can always come back and place them or move them later.</p>
+      </div>
+    </div>
+  </div>
+  <div class="section">
+    <button  ui-if="activeTab == 1" ng-click="showPeople()">Find People</button>
+    <button  ui-if="activeTab == 2" ng-click="showPlaces()">Find Places</button>
+    <button  ui-if="activeTab == 3" ng-click="showOrganisations()">Find Organisations</button>
+    <button  ui-if="activeTab == 4" ng-click="showTopics()">Find Topics</button>
+    <button  ui-if="activeTab == 1" ng-click="deleteExtractedPeopleData()">Delete extracted People</button>
+    <button  ui-if="activeTab == 2" ng-click="deleteExtractedPlacesData()">Delete extracted Places</button>
+    <button  ui-if="activeTab == 3" ng-click="deleteExtractedOrganisationsData()">Delete extracted Organisations</button>
+    <button  ui-if="activeTab == 4" ng-click="deleteExtractedTopicsData()">Delete extracted Topics</button>
+  </div>
+  <div class="section">
+    <ui-shared-state id="activeTab" default="1"></ui-shared-state>
+    <ul class="nav nav-tabs">
+      <li ui-class="{'active': activeTab == 1}">
+        <a ui-set="{'activeTab': 1}">People</a>
+      </li>
+      <li ui-class="{'active': activeTab == 2}">
+        <a ui-set="{'activeTab': 2}">Places</a>
+      </li>
+      <li ui-class="{'active': activeTab == 3}">
+        <a ui-set="{'activeTab': 3}">Organisations</a>
+      </li>
+      <li ui-class="{'active': activeTab == 4}">
+        <a ui-set="{'activeTab': 4}">Topics</a>
+      </li>
+    </ul>
+  </div>
+    <div class="section scrollable-in-tab-container">
+    <div id="people-list" class="scrollable-in-tab-list" ui-if="activeTab == 1">&nbsp;
+      <p>Press "Find People" to analyse your loaded Facebook data and find People.</p>
+    </div>
+
+    <div id="places-list" class="scrollable-in-tab-list" ui-if="activeTab == 2">
+      <p>Press "Find Places" to analyse your loaded Google data and find Places.</p>
+    </div>
+
+    <div id="organisations-list" class="scrollable-in-tab-list" ui-if="activeTab == 3">
+      <p>Press "Find Organisations" to analyse your loaded NatWest bank data and find Organisations.</p>
+    </div>
+
+    <div id="topics-list" class="scrollable-in-tab-list" ui-if="activeTab == 4">
+      <p>Press "Find Topics" to analyse your loaded Facebook, Netflix and Spotify data to find Topics.</p>
+    </div>
+  </div>
+</div>
