@@ -1,4 +1,5 @@
-# Downloaded Personal Data Viewer UI - Proof of Concept - by Alex Bowyer & Jasmine Cox for a BBC R&D Hack event
+# Downloaded Personal Data Viewer UI - Proof of Concept
+## by Alex Bowyer, for a BBC R&D Hack event
 
 ![gdpr-viewer](https://user-images.githubusercontent.com/1473244/217880753-cf18dda8-387f-4f32-896e-dd722ee11ce3.png)
 
